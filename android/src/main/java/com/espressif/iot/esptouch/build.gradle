@@ -1,11 +1,13 @@
+package com.espressif.iot.esptouch
+
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 27
+        minSdkVersion 23
+        targetSdkVersion 31
         versionCode 6
         versionName "v0.3.7.0"
 

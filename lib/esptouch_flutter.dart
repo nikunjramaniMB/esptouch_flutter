@@ -21,12 +21,12 @@ class ESPTouchResult {
   /// IP address of the connected device on the local network in string representation.
   ///
   /// Example: 127.0.0.55
-  final String ip;
+  final String? ip;
 
   /// BSSID (MAC address) of the connected device.
   ///
   /// Example: `ab:cd:ef:c0:ff:33`, or without colons `abcdefc0ff33`
-  final String bssid;
+  final String? bssid;
 
   /// We provide == operator implementation: if two results have the same IP
   /// and BSSID, we consider them the same.
@@ -64,7 +64,7 @@ class ESPTouchTask {
   /// * Dart code: https://github.com/smaho-engineering/esptouch_flutter/blob/master/example/lib/wifi_info.dart
   /// * iOS code: https://github.com/smaho-engineering/esptouch_flutter/blob/master/example/ios/Runner/AppDelegate.m
   /// * Android code: https://github.com/smaho-engineering/esptouch_flutter/blob/master/example/android/app/src/main/java/com/smaho/eng/esptouchexample/MainActivity.java
-  final String ssid;
+  final String? ssid;
 
   /// WiFi BSSID is the MAC address of the wireless access point.
   ///
@@ -78,7 +78,7 @@ class ESPTouchTask {
   /// * Dart code: https://github.com/smaho-engineering/esptouch_flutter/blob/master/example/lib/wifi_info.dart
   /// * iOS code: https://github.com/smaho-engineering/esptouch_flutter/blob/master/example/ios/Runner/AppDelegate.m
   /// * Android code: https://github.com/smaho-engineering/esptouch_flutter/blob/master/example/android/app/src/main/java/com/smaho/eng/esptouchexample/MainActivity.java
-  final String bssid;
+  final String? bssid;
 
   /// Password for the wireless access point.
   ///
@@ -92,8 +92,8 @@ class ESPTouchTask {
   final ESPTouchTaskParameter taskParameter;
 
   const ESPTouchTask({
-    required this.ssid,
-    required this.bssid,
+    this.ssid,
+    this.bssid,
     this.password = '',
     this.packet = ESPTouchPacket.broadcast,
     this.taskParameter = const ESPTouchTaskParameter(),
@@ -103,8 +103,8 @@ class ESPTouchTask {
   ///
   /// The
   Stream<ESPTouchResult> execute() {
-    assert(ssid.isNotEmpty, 'SSID can\'t be empty');
-    assert(bssid.isNotEmpty, 'BSSID can\'t be empty');
+    assert(ssid!.isNotEmpty, 'SSID can\'t be empty');
+    assert(bssid!.isNotEmpty, 'BSSID can\'t be empty');
     return _eventChannel.receiveBroadcastStream({
       'ssid': ssid,
       'bssid': bssid,
